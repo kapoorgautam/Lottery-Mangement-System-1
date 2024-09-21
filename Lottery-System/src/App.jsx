@@ -10,9 +10,10 @@ import Errorpage from "./components/Errorpage";
 import Signin from "./components/Signin";
 import ColorChart from "./components/ColorChart";
 import NumberChart from "./components/NumberChart";
+import { LanguageProvider } from './components/LanguageContext';
 
 function App() {
-  const baseURL = "http://localhost:4000";
+  const baseURL = "https://lottery-mangement-system-1.onrender.com";
   const userinfo = JSON.parse(localStorage.getItem("userinfo-Lucky"));
   const [loginsuccessfully, setloginsuccessfully] = useState(false);
   useEffect(() => {
@@ -44,7 +45,9 @@ function App() {
   ]);
   return (
     <>
+      <LanguageProvider>
       <RouterProvider router={router} />
+      </LanguageProvider>
     </>
   );
 }

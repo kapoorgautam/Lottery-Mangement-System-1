@@ -1,59 +1,131 @@
+// 
+
+
+// ColorChart.jsx
 import React from "react";
-import Color from "./Color";
+import { useLanguage } from "./LanguageContext";
+import { translations } from "../translator/translations";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
+import Color from "./Color";
+import {
+  Box,
+  Typography,
+  TableContainer,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  Paper,
+} from "@mui/material";
 
 const ColorChart = () => {
   const colorArr = JSON.parse(localStorage.getItem("colorArr")) || [];
-  const time2 = ["2AM", "6AM", "10AM", "2PM"];
-  const prettifyDate = (i, parts) => {
-    const time = new Date("09-01-2024").getTime() + i * 3600 * 24 * 1000;
+  const time2 = ["2 PM", "2:30 PM"];
+  const { language } = useLanguage();
+
+  const prettifyDate = (i) => {
+    const baseDate = new Date("09-01-2024");
+    const time = baseDate.getTime() + i * 3600 * 24 * 1000;
     const date = new Date(time);
     const options = { month: "short", day: "numeric" };
     return date.toLocaleString("en-US", options);
   };
+
+  // Calculate the number of rows based on the data length
+  const numberOfRows = Math.floor((colorArr.length - 7 - 40 - 16) / 4);
+
   return (
-    <div>
+    <>
       <Navbar />
-      <h1>Past color chart</h1>
-      <div
-        style={{ maxHeight: "100vh", overflowY: "auto", textAlign: "center" }}
+      <Box
+        sx={{
+          // padding: { xs: 2, sm: 3, md: 4 },
+          maxWidth: "1500px",
+          margin: "0 auto",
+          textAlign: "center",
+        }}
       >
-        <table className="table table-hover table-striped">
-          <thead className="table-dark">
-            <tr>
-              <th scope="col">Date</th>
-              {time2.map((ele, i) => (
-                <th scope="col" key={i}>
-                  {ele}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {Array.from({
-              length: Math.floor((colorArr?.length - 7 - 40 - 16) / 4),
-            }).map((_, i) => (
-              <tr>
-                <td>{prettifyDate(i, 4)}</td>
-                {Array.from({ length: 4 }).map((_, ind) => {
-                  return (
-                    <td>
+        <Typography
+           style={{ textAlign: "center", 
+            fontSize: "3rem",
+            color: "white",
+          }}
+        >
+          {translations[language].btn1}
+        </Typography>
+
+        {/* Table Container */}
+        <TableContainer
+          component={Paper}
+          sx={{
+        
+            overflowY: "auto",
+            marginTop: 1,
+            boxShadow: 3,
+          }}
+        >
+          <Table stickyHeader aria-label="color chart table">
+            <TableHead>
+              <TableRow>
+                <TableCell
+                  sx={{
+                    backgroundColor: "#32383E",
+                    color: "white",
+                    fontWeight: "bold",
+                    position: "sticky",
+                    top: 0,
+                    zIndex: 1,
+                  }}
+                >
+                  Date
+                </TableCell>
+                {time2.map((ele, i) => (
+                  <TableCell
+                    key={i}
+                    sx={{
+                      backgroundColor: "#32383E",
+                      color: "white",
+                      fontWeight: "bold",
+                      position: "sticky",
+                      top: 0,
+                      zIndex: 1,
+                    }}
+                    align="center"
+                  >
+                    {ele}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {Array.from({ length: numberOfRows }).map((_, i) => (
+                <TableRow key={i}>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    sx={{ fontWeight: "bold" }}
+                  >
+                    {prettifyDate(i, 4)}
+                  </TableCell>
+                  {Array.from({ length: 2 }).map((_, ind) => (
+                    <TableCell key={ind} align="center">
                       <Color
                         colour={
-                          colorArr?.slice(40, colorArr?.length - 7 - 16)[
-                            i * 4 + ind + 1
-                          ]
+                          colorArr.slice(40, colorArr.length - 7 - 16)[i * 4 + ind + 1]
                         }
                       />
-                    </td>
-                  );
-                })}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
+      <Footer />
+    </>
   );
 };
 
