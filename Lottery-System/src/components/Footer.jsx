@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer className="bg-gray text-white footer ">
+        <footer className="footer  bg-neutral text-neutral-content">
             <div className="container flex flex-col items-center">
                 <div className="text-center mb-0">
                     <h1 className="text-2xl font-bold">Satta Link</h1>
