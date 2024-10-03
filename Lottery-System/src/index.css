@@ -83,12 +83,11 @@
 
 /* Add this if you want to add specific styling for the card name */
 .card-name {
-  font-size: 1.5rem;
+  font-size: .5rem;
   font-weight: bold;
   color: #000;
-  margin-bottom: 0.5rem;
+  
 }
-
 
 .makerow {
   display: flex;
