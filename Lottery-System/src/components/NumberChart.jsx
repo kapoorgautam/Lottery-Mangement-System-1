@@ -8,7 +8,11 @@ import { translations } from "../translator/translations";
 const NumberChart = () => {
   const numberArr = JSON.parse(localStorage.getItem("numberArr")) || [];
   const time2 = ["2AM", "6AM", "10AM", "2PM"].reverse();
+
+  const time =[ "Dhani ram", "Mansarovar","Sri ganesh", "Delhi bazaar", "Faridabad", "Gajiyabad", "Gali", "Disawer"];
+
   const time = ["Dhani ram", "Mansarovar", "Sri ganesh", "Delhi bazaar", "Faridabad", "Gajiyabad", "Gali", "Disawer"];
+
   const { language } = useLanguage();
   const prettifyDate = (i, parts) => {
     const time = new Date("09-01-2024").getTime() + i * 3600 * 24 * 1000;
