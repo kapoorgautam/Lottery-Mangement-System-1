@@ -11,6 +11,8 @@ export const translations = {
         logo: "SattaLink",
          btn1: "Past Color Chart",
          btn2: "Past Number Chart",
+         des: "You can select only one color between red and blue—any other color will not be counted in the game.",
+         note: "Make sure to share your guess before the result time, as guesses will not be accepted afterward."
         
     },
     hi: {
@@ -22,7 +24,9 @@ export const translations = {
         fast: "सबसे तेज़ परिणाम ",
         logo: "सट्टालिंक",
         btn1: "पिछला रंग चार्ट",
-        btn2: "पिछला नंबर चार्ट"
+        btn2: "पिछला नंबर चार्ट",
+        des:"आप केवल लाल और नीले में से एक रंग चुन सकते हैं—अन्य रंग खेल में नहीं गिने जाएंगे।",
+        note: "नोट: कृपया अपना अनुमान परिणाम समय से पहले साझा करें, उसके बाद अनुमान स्वीकार नहीं किए जाएंगे।"
     
         
     }

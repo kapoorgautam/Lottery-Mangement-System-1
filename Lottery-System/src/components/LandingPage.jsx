@@ -196,7 +196,7 @@ const LandingPage = () => {
             </Box>
           </Box>
 
-          {/* Color Results Section */}
+          {/* Color Results Section
           <Box className="color-results" width="100%">
             <Typography variant="h4" align="center" gutterBottom sx={{ color: "white" }}>
               Color Results
@@ -257,6 +257,76 @@ const LandingPage = () => {
             </Grid>
           </Box>
         </Box>
+      
+      </div> */}
+
+
+
+
+
+
+        {/* Color Results Section with Heading, Description and Circles */}
+        <Box bgcolor="white" padding={6}>
+        <Box className="color-results " width="100%">
+            <Box display="flex" flexDirection="column" alignItems="center" mb={4}>
+              <Typography variant="h4" align="center" gutterBottom sx={{ color: "black" }}>
+                Color Results
+              </Typography>
+              <Typography variant="body1" align="center" sx={{ color: "black" }}>
+              {translations[language].des}
+              <br></br>
+              <br></br>
+              {translations[language].note}
+              </Typography>
+              {/* Circles */}
+              <Box display="flex" gap={2} mt={2}>
+                <Box width={40} height={40} borderRadius="50%" bgcolor="red" />
+                <Box width={40} height={40} borderRadius="50%" bgcolor="blue" />
+              </Box>
+            </Box>
+
+            <Grid container spacing={2} justifyContent="center">
+              {colorResult.slice(startcolor, startcolor + 8).map((ele, ind) => ind > 1 ? null : (
+                <Grid item xs={12} sm={6} md={3} key={`color-${ind}`}>
+                  <Box
+                    className="card1"
+                    bgcolor={cardBackgroundColors[ind]}
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    padding={2}
+                    fontSize="1.3rem"
+                    fontWeight="600"
+                    borderRadius={2}
+                    color="white"
+                    boxShadow={3}
+                    sx={{ transition: "transform 0.3s", "&:hover": { transform: "scale(1.05)" } }}
+                  >
+                    <Box display="flex" justifyContent="center" alignItems="center" width="100%" padding={1} bgcolor="#333" borderRadius={1} fontSize="1rem" mb={1}>
+                      ({time2[ind]})
+                    </Box>
+                    <Box display="flex" width="100%" justifyContent="space-between">
+                      <Box>
+                        <Color colour={colorResult[startcolor + ind]} />
+                        <Typography variant="caption" color="error" display="block">
+                          {translations[language].yesterday}
+                        </Typography>
+                      </Box>
+                      <Box>
+                        <Color colour={colorResult[startcolor + ind + 4]} />
+                        <Typography variant="caption" color="success.main" display="block">
+                          {translations[language].today}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        </Box>
+     </Box>   
       </div>
       <Footer />
     </>
